@@ -68,7 +68,14 @@ function calculateCorrectAnswer(){
 
     if(operator === "+") {
         return [operand1 + operand2, "addition"];
+    } else if (operator === "-") {
+        return [operand1 - operand2, "subtract"];
+    }else if (operator === "*") {
+        return [operand1 * operand2, "multiply"];
+    } else if (operator === "/") {
+        return [operand1 / operand2, "division"];
     } else {
+        //If the operator is not recognized, alert the user and throw an error
         alert(`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}. Aborting!`;
     }
@@ -94,14 +101,34 @@ function displayAdditionQuestion(operand1, operand2){
     document.getElementById("operator").textContent = "+";
 }
 
-function displaySubtractQuestion(){
+function displaySubtractQuestion(operand1, operand2){
+    // Note: The operands should be set such that operand1 is greater than operand2 to
+    // avoid negative results, or you can handle negative results in your logic.
+    // For example, you can swap the operands if operand1 is less than operand2.
+    if(operand1 < operand2) {
+        let temp = operand1;
+        operand1 = operand2;
+        operand2 = temp;
+    }
+    document.getElementById("operand1").textContent = operand1;
+    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operator").textContent = "-";
+}
+
+function displayMultiplyQuestion(operand1, operand2){
+    document.getElementById("operand1").textContent = operand1;
+    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operator").textContent = "*";
 
 }
 
-function displayMultiplyQuestion(){
-
-}
-
-function displayDivisionQuestion(){
+function displayDivisionQuestion(operand1, operand2){
+    // Ensure operand2 is not zero to avoid division by zero errors
+    if(operand2 === 0) {
+        operand2 = 1; // or handle it in a way that suits your game logic
+    }
+    document.getElementById("operand1").textContent = operand1;
+    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operator").textContent = "/";  
 
 }
