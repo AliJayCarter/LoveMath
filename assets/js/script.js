@@ -10,6 +10,13 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
+
+    document.getElementById("answer-box").addEventListener("keydown", function(event) {
+        //Check if the user pressed the "Enter" key
+        if(event.key === "Enter") {
+            checkAnswer();
+        }
+    });
     //Start the game by calling the runGame function with "addition" as the game type.
     runGame("addition");
 
@@ -19,6 +26,10 @@ document.addEventListener("DOMContentLoaded", function() {
  * and after the uers has answered the question.
  */
 function runGame(gameType) {
+    
+    document.getElementById("answer-box").value = "";
+    document.getElementById("answer-box").focus();
+    
     //Creaes two random numbers between 1 and 25
     let num1 = Math.floor(Math.random() * 25) + 1;
     let num2 = Math.floor(Math.random() * 25) + 1;
